@@ -5,6 +5,9 @@
     <title>webssh</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link href="static/tooltip.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.css">
+    <script type="application/javascript" src="//cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+    <script type="application/javascript" src="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.js"></script>
     <style>
         .aside{text-align:center; background: #1f8dd6; height: 100px; color: #fff; vertical-align: middle;line-height:100px;font-size: 30px}
         #main{margin-top: 20px;}
@@ -15,34 +18,36 @@
         .terminal {
             border: #000 solid 5px;
             font-family: "Monaco", "DejaVu Sans Mono", "Liberation Mono", monospace;
-            font-size: 11px;
+            font-size: 14px;
             color: #f0f0f0;
             background: #000;
-            width: 600px;
+            width: 960px;
             box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 20px;
         }
     </style>
 </head>
+<!--
 <header id="head" class="aside">Login SSH</header>
+-->
 <body>
-    <div id="main" align="center">
+    <div id="main" align="center" style="float: left; margin-left: 10px;">
     <form id="form" name="form" class="pure-form pure-form-stacked">
         <fieldset>
             <div class="pure-item">
                 <label for="host">Host</label>
-                <input id="host" name="host" type="text" placeholder="Host">
+                <input id="host" name="host" type="text" placeholder="Host" value="10.202.240.252">
             </div>
             <div class="pure-item">
                 <label for="port">Port</label>
-                <input id="port" name="port" type="text" placeholder="Port">
+                <input id="port" name="port" type="text" placeholder="Port" value="22">
             </div>
             <div class="pure-item">
                 <label for="username">Username</label>
-                <input id="username" name="username" type="text" placeholder="Username">
+                <input id="username" name="username" type="text" placeholder="Username" value="root">
             </div>
             <div class="pure-item">
                 <label for="password">Password</label>
-                <input id="password" name="password" type="password" placeholder="Password">
+                <input id="password" name="password" type="password" placeholder="Password" value="111111">
             </div>
             <label for="remember" class="pure-checkbox">
                 <input id="remember" type="checkbox"> Remember me
@@ -51,7 +56,8 @@
         </fieldset>
     </form>
     </div>
-    <div id="term" align="center"></div>
+    <br/>
+    <div id="term" align="center" style="float: left; margin-left: 16px;"></div>
 <script src="static/jquery.min.js"></script>
 <script src="static/ws.js"></script>
 <script src="static/term.js"></script>
@@ -59,7 +65,11 @@
 <script type="application/javascript">
     function openTerminal(options) {
         var client = new WSSHClient();
-        var term = new Terminal({cols:80, rows:24, screenKeys:true});
+        var term = new Terminal({
+            cols: 108, 
+            rows: 32, 
+            screenKeys: true
+        });
         term.on('data',function(data){
             client.sendClientData(data);
         });
@@ -125,6 +135,7 @@
         }
     }
 
+    /*
     $(function(){
         $("#form").valid([
             { name:"host",type:"ip"},
@@ -133,6 +144,7 @@
             { name:"password",type:"password"},
         ]);
     })
+    */
 </script>
 </body>
 </html>
